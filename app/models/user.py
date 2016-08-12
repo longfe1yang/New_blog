@@ -9,6 +9,10 @@ class User(db.Model, ReprMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String())
     password = db.Column(db.String())
+    note = db.Column(db.String(), nullable=True)
+    sex = db.Column(db.String())
+    follow_count = db.Column(db.Integer, default=0)
+    fan_count = db.Column(db.Integer, default=0)
     created_time = db.Column(db.Integer)
     # 这里为啥指代时间，因为下面初始化时间指定为time.time()
     # 外键关联
@@ -23,6 +27,8 @@ class User(db.Model, ReprMixin):
         super(User, self).__init__()
         self.username = form.get('username', '')
         self.password = form.get('password', '')
+        self.sex = form .get('sex', '')
+        self.note = form.get('note', '')
         # 在初始化数据的时候写入 unixtime
         # 这样不依赖数据库的功能, 可以通用
         self.created_time = int(time.time())
@@ -42,6 +48,7 @@ class User(db.Model, ReprMixin):
         # _sa_instance_state 是db.modole自动加载进去的
         return b
 
+    # 验证登录用户合法性
     def validate_auth(self, form):
         username = form.get('username', '')
         password = form.get('password', '')
@@ -76,3 +83,6 @@ class User(db.Model, ReprMixin):
             msgs.append(message)
         status = valid_username and valid_username_len and valid_password_len
         return status, msgs
+"""
+这里没有增加管理员权限
+"""
