@@ -84,5 +84,6 @@ class User(db.Model, ReprMixin):
         status = valid_username and valid_username_len and valid_password_len
         return status, msgs
 """
-这里没有增加管理员权限
+这里没有增加管理员权限，
+这里的时间是有区别的，没用彭彭的，暂时这么吧
 """

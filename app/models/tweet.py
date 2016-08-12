@@ -7,14 +7,18 @@ import time
 class Tweet(db.Model, ReprMixin):
     __tablename__ = 'tweets'
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String())
     content = db.Column(db.String())
+    # 评论个数
+    com_count = db.Column(db.Integer, default=0)
     created_time = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref='blog')
 
     def __init__(self, form):
         print('tweet init', form)
-        content = form.get('content', '')
-        self.content = content
+        self.title = form.get('title', '')
+        self.content = form.get('content', '')
         self.created_time = int(time.time())
 
     def json(self):
@@ -38,3 +42,7 @@ class Tweet(db.Model, ReprMixin):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+"""
+这里增加了title，因为原先是微博形式，这里换成了博客
+没有增加Update暂时
+"""
