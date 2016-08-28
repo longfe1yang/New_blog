@@ -68,7 +68,9 @@
                     </ul>
                 </div>
             </nav>
+
             <div class="row clearfix">
+                <!--正文-->
                 <div class="col-md-8 column">
                     <h2>
                         <a href="#">Heading</a>
@@ -87,29 +89,51 @@
 
                 <!--侧栏-->
                 <div class="col-md-4 column">
-                    <div class="well well-lg">
-                        <img src=""/>
+                    <div class="container-fluid">
+                        <div class="media-left">
+                            <img src="../static/img/head.png" class="img-circle glyphicon-align-right" width="120"
+                                 height="120"/>
+                        </div>
+                        <div class="media-right">
+                            <p>欢迎您，{{}}</p>
+                            <p>性别：{{}}</p>
+                            <p></p>
+                        </div>
                     </div>
-                    <div class="well well-lg">
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <p class="panel-title">作者周边</p>
+                        </div>
+                        <div class="panel-body">
+                            <a href="https://github.com/longfe1yang" target="_blank">
+                                github
+                            </a>
+                            <br>
+                            <a href="http://www.jianshu.com/users/50b4e29567da/latest_articles" target="_blank">
+                                简书
+                            </a>
+                            <br>
+                            <a href="http://my.oschina.net/linglingqixianke/blog" target="_blank">
+                                开源中国
+                            </a>
+                        </div>
                     </div>
-                    <div class="well well-lg">
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                    </div>
-                    <div class="well well-lg">
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
-                        这样也可以吧
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">专注领域</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                <span class="label label-success">Python</span>
+                                <span class="label label-default">Flask</span>
+                            </p>
+                            <p>
+                                <span class="label label-danger">javascript</span>
+                                <span class="label label-warning">Django</span>
+                                <span class="label label-primary">MySQL</span></p>
+                        </div>
                     </div>
 
                     <img class="img-responsive" src="../static/img/flask.jpg"/>
