@@ -3,6 +3,12 @@ from . import ReprMixin
 
 import time
 
+"""
+users表的信息，
+id、username、password、note、follow_count、fan_count、created_time、
+没有特别声明，created_time都是清真的time，想用什么格式就用什么格式
+"""
+
 
 class User(db.Model, ReprMixin):
     __tablename__ = 'users'
@@ -31,6 +37,7 @@ class User(db.Model, ReprMixin):
         self.note = form.get('note', '')
         # 在初始化数据的时候写入 unixtime
         # 这样不依赖数据库的功能, 可以通用
+        # 这个意思是可以按照自己需要的格式在需要显示的地方来显示
         self.created_time = int(time.time())
 
     def json(self):
@@ -80,6 +87,9 @@ class User(db.Model, ReprMixin):
             msgs.append(message)
         elif not valid_password_len:
             message = '密码长度必须大于等于 3'
+            msgs.append(message)
+        else:
+            message = '用户注册成功'
             msgs.append(message)
         status = valid_username and valid_username_len and valid_password_len
         return status, msgs

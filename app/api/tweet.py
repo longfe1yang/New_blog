@@ -32,7 +32,6 @@ def tweet_delete(tweet_id):
         abort(404)
     user = current_user()
     if user is None or user.id != t.user_id:
-        print('这里有个401')
         abort(401)
     else:
         t.delete()
@@ -41,7 +40,6 @@ def tweet_delete(tweet_id):
             'success': True,
             'message': '成功删除',
         }
-        print('删除成功')
         return jsonify(r)
 
 # TODO

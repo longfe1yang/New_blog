@@ -51,6 +51,8 @@
             var keys = [
                 'username',
                 'password',
+                    'note',
+                    'sex',
             ];
             var registerPrefix = 'id-input-';
             var form = formFromKeys(keys, registerPrefix);
@@ -64,6 +66,7 @@
                 log('reg, ', r);
                 if(r.success) {
                     log(r.next);
+                    alert(r.message)
                     window.location.href = r.next;
                 } else {
                     alert(r.message);
@@ -119,7 +122,7 @@
     <div class="gua-container">
         <div class="gua-main">
             <div class="gua-header">
-                <h1 class="gua-title">微博</h1>
+                <h1 class="gua-title">掏乎</h1>
             </div>
             <div class="gua-form">
                 <div class="gua-tab">
@@ -135,6 +138,14 @@
                         <div class="gua-input-wrapper">
                             <input id="id-input-password" type="text" placeholder="密码（不少于 3 位）" required/>
                         </div>
+                        <div class="gua-input-wrapper">
+                            <input id="id-input-note" type="text" placeholder="个性签名" />
+                        </div>
+                        <div>
+                            <input type="radio" id="id-input-sex" name="sex" value="male" checked /> male
+                            <input type="radio" id="id-input-sex" name="sex" value="female" /> female
+                        </div>
+
                     </div>
                     <button id="id-button-register" class="gua-button-big">注册</button>
                 </div>

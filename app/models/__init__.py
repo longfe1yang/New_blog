@@ -11,3 +11,5 @@ class ReprMixin(object):
 # 这样从这里import出去的User和Tweet都是已经继承了ReprMixin的类
 from .user import User
 from .tweet import Tweet
+from .comment import Comment
+from .follow import Follow

@@ -4,9 +4,7 @@ __pycache__/
 
 .idea/*
 
-tmp/*
-
-db.sqlite
+*.sqlite
 
 .DS_Store
 
