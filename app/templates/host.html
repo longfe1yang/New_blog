@@ -18,7 +18,7 @@
         var author = t.author;
         var id = t.id;
         var tw = `
-        <div id="long-tweet-#{id}" style="margin: 0px 0px 35px 0px;">
+        <div data-id="${id}" class="long-tweet" style="margin: 0px 0px 35px 0px;">
             <h2>
                 <a href="#">${title}</a>
             </h2>
@@ -28,8 +28,8 @@
                         <span class="label label-primary">时间：${time}</span></h4>
                 </div>
                 <div class="media-right" style="padding-left: 450px">
-                    <a class="glyphicon glyphicon-pencil" href="/api/update/id" title="编辑"></a>
-                    <a class="glyphicon glyphicon-trash" href="/api/delete/id" title="删除"></a>
+                    <a class="glyphicon glyphicon-pencil" href="/api/update/${id}" title="编辑"></a>
+                    <a class="glyphicon glyphicon-trash" href="/api/delete/${id}" title="删除"></a>
                 </div>
             </div>
             <p>
@@ -61,7 +61,13 @@
         }, g_userID);
     };
 
-
+    var bindDeleteAction = function () {
+        $('#sortable').on('click', 'a.glyphicon.glyphicon-trash', function () {
+            log('开始删除了');
+            var id = $(this).data('id');
+            $(this).closest('div.long-tweet').remove()
+        })
+    };
 
     var __main = function () {
         loadTweets();
