@@ -5,7 +5,7 @@ import time
 
 """
 users表的信息，
-id、username、password、note、follow_count、fan_count、created_time、
+id、username、password、note、created_time、
 没有特别声明，created_time都是清真的time，想用什么格式就用什么格式
 """
 
@@ -17,8 +17,6 @@ class User(db.Model, ReprMixin):
     password = db.Column(db.String())
     note = db.Column(db.String(), nullable=True)
     sex = db.Column(db.String())
-    follow_count = db.Column(db.Integer, default=0)
-    fan_count = db.Column(db.Integer, default=0)
     created_time = db.Column(db.Integer)
     # 这里为啥指代时间，因为下面初始化时间指定为time.time()
     # 外键关联
