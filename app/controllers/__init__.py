@@ -22,7 +22,7 @@ def timeline_view():
     return render_template('timeline.html', user=u)
 
 
-@main.route('/timeline/<username>')
-def user_timeline_view(username):
-    u = User.query.filter_by(username=username).first_or_404()
-    return render_template('timeline.html', user=u)
+# @main.route('/timeline/<username>')
+# def user_timeline_view(username):
+#     u = User.query.filter_by(username=username).first_or_404()
+#     return render_template('timeline.html', user=u)

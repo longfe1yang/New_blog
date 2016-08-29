@@ -9,8 +9,6 @@ class Tweet(db.Model, ReprMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String())
     content = db.Column(db.String())
-    # 评论个数
-    com_count = db.Column(db.Integer, default=0)
     created_time = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='blog')

@@ -13,8 +13,7 @@ def rebuild_db():
 
 def run():
     config = dict(
-        debug=True,
-    )
+        debug=True,)
     init_app().run(**config)
 
 

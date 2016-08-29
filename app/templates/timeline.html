@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Blog
+    Blog
 {% endblock %}
+
+
 
 {% block content %}
 <h2>
@@ -25,10 +27,13 @@ Blog
 {% endblock %}
 
 {% block personal %}
-<p>欢迎您，{}</p>
-<p>note：{}</p>
-<p>性别：{}</p>
-<p>权限：{}</p>
+<br>
+<p>欢迎您，{{user.username}}</p>
+<p>note：{{user.note}}</p>
+<p>性别：{{user.sex}}</p>
+<!--Todo-->
+<!--这里的权限字段需要在model中加一下-->
+<!--<p>权限：{{user.role}}</p>-->
 {% endblock %}
 
 {% block other_users %}
