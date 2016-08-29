@@ -9,6 +9,14 @@ from flask import jsonify
 from flask import abort
 
 
+def content_cutter(data):
+    content_limit = 50
+    for i in data:
+        content_len = len(i['content'])
+        if content_len >= content_limit:
+            i['content'] = i['content'][:content_limit] + '......'
+
+
 # 绝对路由是http://127.0.0.1:5000/api/tweet/add
 @main.route('/tweet/add', methods=['POST'])
 def tweet_add():
@@ -50,9 +58,12 @@ def tweet_delete(tweet_id):
 def tweet_deliver():
     tweets = Tweet.query.all()
     print('tweets', tweets)
+    data = [t.json() for t in tweets]
+    content_cutter(data)
+
     r = dict(
         success=True,
-        data=[t.json() for t in tweets]
+        data=data,
     )
     print('debug r', r)
     return jsonify(r)
