@@ -87,3 +87,10 @@ vip.tweetDelete = function(success,tweet_id){
     log('删除成功没?', url);
     this.get(url, success);
 };
+
+// 加载tweet
+vip.tweetDeliver = function (success) {
+    var url = '/api/tweet/deliver';
+    log('加载成功没')
+    this.get(url, success)
+};
