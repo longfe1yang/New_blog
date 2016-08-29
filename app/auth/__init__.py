@@ -82,5 +82,4 @@ def login():
         session['username'] = username
     else:
         r['success'] = False
-        r['message'] = '登录失败'
     return jsonify(r)

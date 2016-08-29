@@ -83,8 +83,8 @@ vip.tweetAdd = function(form, success, error) {
 
 //
 vip.tweetDelete = function(success,tweet_id){
-    var url = `/api/tweet/delete/${tweet_id}`;
-    log('删除成功没?', url);
+    var url = '/api/tweet/delete/' + tweet_id;
+    log('这是vip删除中的tweet_id', tweet_id);
     this.get(url, success);
 };
 

@@ -44,7 +44,7 @@ def tweet_add():
 @main.route('/tweet/delete/<tweet_id>')
 def tweet_delete(tweet_id):
     t = Tweet.query.filter_by(id=tweet_id).first()
-    print('t.id', t.id)
+    log('t.id', t.id)
     if t is None:
         print('这里有个404')
         abort(404)
@@ -58,6 +58,7 @@ def tweet_delete(tweet_id):
             'success': True,
             'message': '成功删除',
         }
+        log('这个是r', r)
         return jsonify(r)
 
 

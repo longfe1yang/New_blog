@@ -9,7 +9,7 @@
 <script src="../static/js/api.js"></script>
 
 <script>
-    var g_userID = {{user.id}}
+    window.g_userID = {{user.id}}
     var tweetTemplate = function (tweet) {
         var t = tweet;
         var content = t.content;
@@ -18,18 +18,18 @@
         var author = t.author;
         var id = t.id;
         var tw = `
-        <div data-id="${id}" class="long-tweet" style="margin: 0px 0px 35px 0px;">
+        <div data-id=${id} class="long-tweet container-fluid" style="margin: 0px 0px 35px 0px;">
             <h2>
                 <a href="#">${title}</a>
             </h2>
-            <div class="container" style="margin: -18px 0px 0px -14px;">
+            <div class="container-fluid" style="margin: -18px 0px 0px -10px;">
                 <div class="media-left">
                     <h4><span class="label label-success">作者：${author}</span>
                         <span class="label label-primary">时间：${time}</span></h4>
                 </div>
-                <div class="media-right" style="padding-left: 450px">
-                    <a class="glyphicon glyphicon-pencil" href="/api/update/${id}" title="编辑"></a>
-                    <a class="glyphicon glyphicon-trash" href="/api/delete/${id}" title="删除"></a>
+                <div class="media-right" style="padding-left: 400px">
+                    <button class="glyphicon glyphicon-pencil" type="button" title="编辑"></button>
+                    <button class="glyphicon glyphicon-trash" type="button" title="删除"></button>
                 </div>
             </div>
             <p>
@@ -62,10 +62,22 @@
     };
 
     var bindDeleteAction = function () {
-        $('#sortable').on('click', 'a.glyphicon.glyphicon-trash', function () {
-            log('开始删除了');
-            var id = $(this).data('id');
-            $(this).closest('div.long-tweet').remove()
+        $('div#sortable').on('click', 'button.glyphicon.glyphicon-trash', function () {
+            var self = $(this);
+            var tweet_id = self.closest('div.long-tweet').data('id');
+            log('self是', self);
+            log('bindDelet中tweet_id是', tweet_id);
+            var success = function(r){
+                log('删除成功', r);
+                if(r.success) {
+                    self.closest('div.long-tweet').remove();
+                } else {
+                    log(r.message);
+                }
+              };
+            log('tweet删除前的mark');
+            vip.tweetDelete(success, tweet_id);
+
         })
     };
 
