@@ -13,8 +13,9 @@ Blog
         var t = tweet;
         var content = t.content;
         var title = t.title;
+        var time = t.created_time;
 //        todo 这里应该换为是username，可以在return的JSON中加入
-        var author = t.username;
+        var author = t.author;
         var id = t.id;
         var tw = `
         <div id="long-tweet-#{id}">
@@ -22,13 +23,12 @@ Blog
                 <a href="#">${title}</a>
             </h2>
             <p>
-                <span class="label label-success">作者：${author}</span>
+                <h4><span class="label label-success">作者：${author}</span>
+                    <span class="label label-primary">时间：${time}</span></h4>
             </p>
             <p>
             ${content}
-            </p>
-            <p>
-                <a class="btn" href="#">View details »</a>
+            <a class="btn" href="#">View details »</a>
             </p>
         </div>
             `;

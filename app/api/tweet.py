@@ -3,6 +3,7 @@ from ..models import Tweet
 from . import main
 from . import current_user
 from . import login_required
+from my_log import log
 
 from flask import request
 from flask import jsonify
@@ -10,11 +11,19 @@ from flask import abort
 
 
 def content_cutter(data):
-    content_limit = 50
+    content_limit = 150
     for i in data:
         content_len = len(i['content'])
         if content_len >= content_limit:
             i['content'] = i['content'][:content_limit] + '......'
+    return data
+
+
+def insert_author(data):
+    for i in data:
+        user = User.query.filter_by(id=i['user_id']).first()
+        i['author'] = user.username
+    return data
 
 
 # 绝对路由是http://127.0.0.1:5000/api/tweet/add
@@ -60,7 +69,24 @@ def tweet_deliver():
     print('tweets', tweets)
     data = [t.json() for t in tweets]
     content_cutter(data)
+    insert_author(data)
+    r = dict(
+        success=True,
+        data=data,
+    )
+    print('debug r', r)
+    return jsonify(r)
 
+
+@main.route('/tweet/<user_id>')
+# @login_required
+def load_user_blog(user_id):
+    tweets = Tweet.query.filter_by(user_id=user_id).all()
+    log('user_id', user_id)
+    log('tweets', tweets)
+    data = [t.json() for t in tweets]
+    content_cutter(data)
+    insert_author(data)
     r = dict(
         success=True,
         data=data,

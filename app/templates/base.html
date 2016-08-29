@@ -35,15 +35,15 @@
                             data-target="#bs-example-navbar-collapse-1"><span
                             class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
                             class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="navbar-brand glyphicon glyphicon-home" href="#">博客大厅</a>
+                    <a class="navbar-brand glyphicon glyphicon-home" href="/timeline">博客大厅</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
                             <!--<div class="glyphicon glyphicon-home"></div>-->
                             <!--Todo-->
-                            <!--增加网址-->
-                            <a class="glyphicon glyphicon-user" href="#">My blog</a>
+                            <!--增加路由-->
+                            <a class="glyphicon glyphicon-user" href="/host">My blog</a>
                         </li>
                         <li>
                             <!--Todo-->
@@ -85,10 +85,16 @@
                     <div class="container-fluid">
                         <div class="media-left">
                             {% block person_photo %}
+                            <img src="../static/img/head.png" class="img-circle glyphicon-align-right" width="120"
+                                 height="120"/>
                             {% endblock %}
                         </div>
                         <div class="media-right">
                             {% block personal %}
+                            <br>
+                            <p>欢迎您，{{user.username}}</p>
+                            <p>note：{{user.note}}</p>
+                            <p>性别：{{user.sex}}</p>
                             {% endblock %}
                         </div>
                     </div>
@@ -99,6 +105,7 @@
                         </div>
                         <div class="panel-body">
                             {% block other_users %}
+                            其他用户
                             {% endblock %}
                         </div>
                     </div>

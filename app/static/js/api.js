@@ -88,9 +88,16 @@ vip.tweetDelete = function(success,tweet_id){
     this.get(url, success);
 };
 
-// 加载tweet
+// 加载所有人的tweet
 vip.tweetDeliver = function (success) {
     var url = '/api/tweet/deliver';
-    log('加载成功没')
+    log('加载成功没');
+    this.get(url, success)
+};
+
+// 自己的tweet
+vip.tweetMyOwn = function (success, user_id) {
+    var url = '/api/tweet/' + user_id;
+    log('加载成功没');
     this.get(url, success)
 };

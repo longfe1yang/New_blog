@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{user.username}}的个人博客
+{% endblock %}
+
+{% block head %}
+{{super()}}
+<script src="../static/js/api.js"></script>
+
+<script>
+    var g_userID = {{user.id}}
+    var tweetTemplate = function (tweet) {
+        var t = tweet;
+        var content = t.content;
+        var title = t.title;
+        var time = t.created_time;
+        var author = t.author;
+        var id = t.id;
+        var tw = `
+        <div id="long-tweet-#{id}" style="margin: 0px 0px 35px 0px;">
+            <h2>
+                <a href="#">${title}</a>
+            </h2>
+            <div class="container" style="margin: -18px 0px 0px -14px;">
+                <div class="media-left">
+                    <h4><span class="label label-success">作者：${author}</span>
+                        <span class="label label-primary">时间：${time}</span></h4>
+                </div>
+                <div class="media-right" style="padding-left: 450px">
+                    <a class="glyphicon glyphicon-pencil" href="/api/update/id" title="编辑"></a>
+                    <a class="glyphicon glyphicon-trash" href="/api/delete/id" title="删除"></a>
+                </div>
+            </div>
+            <p>
+            ${content}
+            <a class="btn" href="#">View details »</a>
+            </p>
+        </div>
+            `;
+        return tw
+    };
+
+    var insertTweets = function (tweets) {
+        for (var i = 0; i < tweets.length; i++) {
+            var a = tweets[i];
+            var t = tweetTemplate(a);
+            $('#sortable').append(t);
+        }
+    };
+
+    var loadTweets = function () {
+        log('userID', g_userID);
+        vip.tweetMyOwn(function (r) {
+            if (r.success) {
+                var tweets = r.data;
+                insertTweets(tweets);
+            } else {
+                alert(r.message);
+            }
+        }, g_userID);
+    };
+
+
+
+    var __main = function () {
+        loadTweets();
+        bindDeleteAction();
+    };
+
+    $(document).ready(function () {
+        __main();
+    })
+</script>
+
+{% endblock %}
