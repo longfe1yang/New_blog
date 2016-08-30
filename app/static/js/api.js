@@ -7,6 +7,11 @@ var log = function () {
     console.log(arguments);
 };
 
+var visitor_count = {
+    'username': 'visitor',
+    'password': '123'
+};
+
 // form,其作用就是构造并返回一个js对象
 var formFromKeys = function(keys, prefix) {
     var form = {};

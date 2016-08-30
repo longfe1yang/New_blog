@@ -67,7 +67,7 @@
                 log('reg, ', r);
                 if (r.success) {
                     log(r.next);
-                    alert(r.message)
+                    alert(r.message);
                     window.location.href = r.next;
                 } else {
                     alert(r.message);
@@ -97,6 +97,25 @@
             vip.login(form, success, error);
         };
 
+        var visitor_login = function () {
+            var form = visitor_count;
+            log('form在visitor', form);
+            var success = function (r) {
+                log('login, ', r);
+                if (r.success) {
+                    log(r.next);
+                    window.location.href = r.next;
+                } else {
+                    alert(r.message);
+                }
+            };
+            var error = function (err) {
+                log('login, ', err);
+                alert(err);
+            };
+            vip.login(form, success, error);
+        };
+
         var bindActions = function () {
             $('#id-button-register').on('click', function () {
                 register();
@@ -105,8 +124,11 @@
             $('#id-button-login').on('click', function () {
                 login();
             });
-        };
 
+            $('#id-button-visitor').on('click', function () {
+               visitor_login();
+            });
+        };
         var __main = function () {
             setup();
             bindActions();
@@ -160,6 +182,7 @@
                     </div>
                 </div>
                 <button id="id-button-login" class="gua-button-big" type="submit">进入</button>
+                <button id="id-button-visitor" class="btn-group-sm btn-info">游客登录</button>
                 <div class="gua-remember float-left">
                     <!-- <label><input id="gua-id-remember" type="checkbox" name="remember" />记住我</label> -->
                 </div>
