@@ -28,8 +28,8 @@
                         <span class="label label-primary">时间：${time}</span></h4>
                 </div>
                 <div class="media-right" style="padding-left: 400px">
-                    <a class="glyphicon glyphicon-pencil" href="/api/tweet/update/${id}" title="编辑"></a>
-                    <a class="glyphicon glyphicon-trash" type="button" title="删除"></a>
+                    <a class="glyphicon glyphicon-pencil btn-sm" href="/update/${id}" title="编辑"></a>
+                    <a class="glyphicon glyphicon-trash" type="button" href="#" title="删除"></a>
                 </div>
             </div>
             <p>
@@ -62,16 +62,15 @@
     };
 
     var bindDeleteAction = function () {
-        $('div#sortable').on('click', 'button.glyphicon.glyphicon-trash', function () {
+        $('div#sortable').on('click', 'a.glyphicon.glyphicon-trash', function () {
             var self = $(this);
             var tweet_id = self.closest('div.long-tweet').data('id');
             log('self是', self);
             log('bindDelet中tweet_id是', tweet_id);
             var success = function(r){
-                log('删除成功', r);
                 if(r.success) {
-                    self.closest('div.long-tweet').remove();
                     alert(r.message)
+                    self.closest('div.long-tweet').remove();
                 } else {
                     log(r.message);
                 }

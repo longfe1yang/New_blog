@@ -17,6 +17,7 @@ class User(db.Model, ReprMixin):
     password = db.Column(db.String())
     note = db.Column(db.String(), nullable=True)
     sex = db.Column(db.String())
+    role = db.Column(db.Integer, default=2)
     created_time = db.Column(db.Integer)
     # 这里为啥指代时间，因为下面初始化时间指定为time.time()
     # 外键关联

@@ -46,9 +46,12 @@ if __name__ == '__main__':
     # }
     # response = user_login(form)
     # log(response.status_code, response.text)
-    # path = host + '/api/tweet/deliver'
-    # response = requests.get(path)
-    # response.encoding = 'utf-8'
-    # print(response.status_code, response.text)
-    dct = {}
+    path = host + '/api/tweet/update/1'
+    form = {
+        'title': '我就试试',
+
+    }
+    response = requests.post(path, form)
+    response.encoding = 'utf-8'
+    print(response.status_code, response.text)
 

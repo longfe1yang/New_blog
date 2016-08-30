@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>发布页面</title>
+    <title>编辑页面</title>
     <meta charset="UTF-8">
     <link href="../static/css/bootstrap.css" rel="stylesheet">
     <link href="../static/css/common.css" rel="stylesheet">
@@ -14,17 +14,7 @@
     <script src="../static/tinymce/js/tinymce/plugins/codesample/plugin.min.js"></script>
     <script type="text/javascript" src="../static/js/tinymce_setup.js"></script>
     <script>
-        //        var insertTweet = function(tweet) {
-        //            var t = tweet;
-        //            var template = `
-        //                ${t.created_time} : ${t.content}
-        //                <a href="/tweet/update/${t.id}">编辑</a>
-        //                <a href="/tweet/delete/${t.id}">删除</a>
-        //            `;
-        //            $('#id-div-tweets').append(template);
-        //        };
-
-        var addNewTweet = function () {
+        var updateNewTweet = function () {
             var form = {
                 'title': $('#title').val(),
                 'content': tinymce.activeEditor.getContent(),
@@ -32,30 +22,32 @@
 //                'summary': $('#summary').val()
             };
             var success = function (r) {
-                log('login, ', r);
+//                log('login, ', r);
                 if (r.success) {
 //                    insertTweet(r.data);
+                    log('addTweet中显示');
+                    alert('提交成功');
                     window.location.href = r.next;
                 } else {
-                    alert('发布失败');
                     log(r.message);
                 }
             };
             var error = function (err) {
                 log(err);
             };
-            vip.tweetAdd(form, success, error);
+            var tweet_id = {{t.id}}
+            log('blog_id', tweet_id);
+            vip.tweetUpdate(form, success, error, tweet_id);
         };
 
-        var bindActions = function () {
-            $('#id-button-tweet-add').on('click', function () {
-                addNewTweet();
-                console.log('触发addNewTweet')
+        var updateActions = function () {
+            $('#id-button-tweetAdd').on('click', function () {
+                updateNewTweet();
             });
         };
 
         var __main = function () {
-            bindActions();
+            updateActions();
         };
 
         $(document).ready(function () {
@@ -72,13 +64,14 @@
         <form class="submit-article" method="post">
             <div class="form-group">
                 <label class="control-label" for="title">标题</label>：
-                <input class="submit-article-title" id="title" name="title" required="required" type="text" value="">（1-50字）
+                <input class="submit-article-title" id="title" name="title" required="required" type="text"
+                       value="{{t.title}}">（1-50字）
             </div>
             <div class="form-group">
-                <textarea id="content" required="required" name="content"></textarea>
+                <textarea id="content" name="content" required="required">{{t.content}}</textarea>
             </div>
             <div class="submit-article-button">
-                <button id="id-button-tweet-add" type="button" class="btn btn-success">提交</button>
+                <button id="id-button-tweetAdd" type="button" class="btn btn-success">提交</button>
             </div>
         </form>
     </div>

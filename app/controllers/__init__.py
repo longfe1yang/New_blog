@@ -3,6 +3,7 @@ from flask import session
 from flask import Blueprint
 
 from ..models import User
+from ..models import Tweet
 
 
 main = Blueprint('controllers', __name__)
@@ -31,6 +32,13 @@ def host_view():
 @main.route('/publish')
 def publish():
     return render_template('publish.html', action='publish', b=None)
+
+
+@main.route('/update/<tweet_id>')
+def update_view(tweet_id):
+    t = Tweet.query.filter_by(id=tweet_id).first_or_404()
+    return render_template('tweet_update.html', t=t, action=True)
+
 
 # @main.route('/timeline/<username>')
 # def user_timeline_view(username):

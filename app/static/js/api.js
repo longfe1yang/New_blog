@@ -101,3 +101,10 @@ vip.tweetMyOwn = function (success, user_id) {
     log('加载成功没');
     this.get(url, success)
 };
+
+
+// tweet更新
+vip.tweetUpdate = function (form, success, error, tweet_id) {
+    var url = '/api/tweet/update/' + tweet_id;
+    this.post(url, form, success, error)
+};

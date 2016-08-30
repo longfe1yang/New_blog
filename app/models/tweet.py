@@ -10,6 +10,7 @@ class Tweet(db.Model, ReprMixin):
     title = db.Column(db.String())
     content = db.Column(db.String())
     created_time = db.Column(db.Integer, default=0)
+    update_time = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='blog')
 
@@ -18,6 +19,7 @@ class Tweet(db.Model, ReprMixin):
         self.title = form.get('title', '')
         self.content = form.get('content', '')
         self.created_time = int(time.time())
+        self.update_time = int(time.time())
 
     def json(self):
         extra = dict(
@@ -32,6 +34,12 @@ class Tweet(db.Model, ReprMixin):
             '_sa_instance_state',
         ]
         return b
+
+    def update(self, form):
+        self.content = form['content']
+        self.title = form['title']
+        # self.created_time = int(time.time())
+        db.session.commit()
 
     def save(self):
         db.session.add(self)
