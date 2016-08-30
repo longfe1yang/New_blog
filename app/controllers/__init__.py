@@ -28,6 +28,10 @@ def host_view():
     return render_template('host.html', user=u)
 
 
+@main.route('/publish')
+def publish():
+    return render_template('publish.html', action='publish', b=None)
+
 # @main.route('/timeline/<username>')
 # def user_timeline_view(username):
 #     u = User.query.filter_by(username=username).first_or_404()

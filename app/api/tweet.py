@@ -8,6 +8,7 @@ from my_log import log
 from flask import request
 from flask import jsonify
 from flask import abort
+from flask import url_for
 
 
 def content_cutter(data):
@@ -31,13 +32,34 @@ def insert_author(data):
 def tweet_add():
     u = current_user()
     form = request.get_json()
+    log('get 到数据没', form)
     t = Tweet(form)
     t.user = u
     t.save()
+    log('save成功')
+    r = dict(
+        success=True,
+        next='/host',
+        # data=t.json(),
+    )
+    log('jsonify成功')
+    return jsonify(r)
+
+
+@main.route('/tweet/update/<tweet_id>', methods=['POST'])
+def update(tweet_id):
+    u = current_user()
+    t = Tweet.query.filter_by(id=tweet_id).first_or_404()
+    form = request.get_json()
+    print(form)
+    t.update(form)
+    print(t)
     r = dict(
         success=True,
         data=t.json(),
     )
+    r['next'] = request.args.get('next', url_for('controllers.host_view', user=u))
+    print('r', r)
     return jsonify(r)
 
 
@@ -95,7 +117,3 @@ def load_user_blog(user_id):
     print('debug r', r)
     return jsonify(r)
 
-
-# TODO
-# delete
-# update

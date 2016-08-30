@@ -33,8 +33,6 @@ class Tweet(db.Model, ReprMixin):
         ]
         return b
 
-
-
     def save(self):
         db.session.add(self)
         db.session.commit()
