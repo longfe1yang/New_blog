@@ -5,6 +5,7 @@ from flask import Blueprint
 from ..models import User
 from ..models import Tweet
 
+from my_log import log
 
 main = Blueprint('controllers', __name__)
 
@@ -17,16 +18,25 @@ def current_user():
     return u
 
 
+# 除了current_user()外的所有user
+def other_users():
+    u = current_user()
+    all_users = User.query.all()
+    return [i for i in all_users if i != u]
+
+
 @main.route('/timeline')
 def timeline_view():
     u = current_user()
-    return render_template('timeline.html', user=u)
+    others = other_users()
+    return render_template('timeline.html', user=u, others=others)
 
 
 @main.route('/host')
 def host_view():
     u = current_user()
-    return render_template('host.html', user=u)
+    others = other_users()
+    return render_template('host.html', user=u, others=others)
 
 
 @main.route('/publish')

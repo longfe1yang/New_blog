@@ -34,9 +34,9 @@ Blog
             `;
         return tw
     };
-    
+
     var insertTweets = function (tweets) {
-        for(var i = 0; i < tweets.length; i++){
+        for (var i = 0; i < tweets.length; i++) {
             var a = tweets[i];
             var t = tweetTemplate(a);
             $('#sortable').append(t);
@@ -45,10 +45,10 @@ Blog
 
     var loadTweets = function () {
         vip.tweetDeliver(function (r) {
-            if(r.success){
+            if (r.success) {
                 var tweets = r.data;
                 insertTweets(tweets);
-            }else{
+            } else {
                 alert(r.message);
             }
         });
@@ -62,27 +62,11 @@ Blog
         __main();
     })
 </script>
-
-{% endblock %}
-
-{% block content %}
-<h2>
-    <a href="#">Heading</a>
-</h2>
-<span class="label label-success">标签</span>
-<p>
-    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-    tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-    malesuada magna mollis euismod. Donec sed odio dui.
-</p>
-<p>
-    <a class="btn" href="#">View details »</a>
-</p>
 {% endblock %}
 
 {% block person_photo %}
 <img src="../static/img/head.png" class="img-circle glyphicon-align-right" width="120"
-     height="120"/>
+height="120"/>
 {% endblock %}
 
 {% block personal %}
@@ -90,11 +74,4 @@ Blog
 <p>欢迎您，{{user.username}}</p>
 <p>note：{{user.note}}</p>
 <p>性别：{{user.sex}}</p>
-<!--Todo-->
-<!--这里的权限字段需要在model中加一下-->
-<!--<p>权限：{{user.role}}</p>-->
-{% endblock %}
-
-{% block other_users %}
-其他用户
 {% endblock %}
