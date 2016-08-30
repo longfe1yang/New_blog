@@ -83,3 +83,9 @@ def login():
     else:
         r['success'] = False
     return jsonify(r)
+
+
+@blue.route('/logout')
+def logout():
+    session.pop('username')
+    return redirect(url_for('.login_view'))

@@ -69,7 +69,7 @@
             log('bindDelet中tweet_id是', tweet_id);
             var success = function(r){
                 if(r.success) {
-                    alert(r.message)
+                    alert(r.message);
                     self.closest('div.long-tweet').remove();
                 } else {
                     log(r.message);

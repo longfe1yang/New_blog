@@ -63,7 +63,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog owner<strong
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<strong
                                     class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -79,9 +79,11 @@
                 <!--正文-->
 
                 <div class="col-md-8 column" id="sortable">
+                {% if user %}
                     {% block content %}
                     <!--这个内容可以出现在子模板中-->
                     {% endblock %}
+                {% endif %}
                 </div>
 
                 <!--侧栏-->
