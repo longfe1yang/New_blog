@@ -45,7 +45,7 @@ def tweet_add():
 
 @main.route('/tweet/update/<tweet_id>', methods=['POST'])
 def tweet_update(tweet_id):
-    u = current_user()
+    # u = current_user()
     t = Tweet.query.filter_by(id=tweet_id).first_or_404()
     form = request.get_json()
     log(form)
@@ -98,9 +98,10 @@ def tweet_deliver():
     return jsonify(r)
 
 
+# 返回user自己的所有tweet
 @main.route('/tweet/<user_id>')
 # @login_required
-def load_user_blog(user_id):
+def load_user_tweet(user_id):
     tweets = Tweet.query.filter_by(user_id=user_id).all()
     log('user_id', user_id)
     log('tweets', tweets)
@@ -114,3 +115,14 @@ def load_user_blog(user_id):
     print('debug r', r)
     return jsonify(r)
 
+
+# 返回tweet的详情
+@main.route('/tweet/details/<tweet_id>')
+def tweet_details(tweet_id):
+    t = Tweet.query.filter_by(id=tweet_id).first()
+    data = t.json()
+    r = dict(
+        success=True,
+        data=data
+    )
+    return jsonify(r)

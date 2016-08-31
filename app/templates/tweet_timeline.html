@@ -20,7 +20,7 @@ Blog
         var tw = `
         <div id="long-tweet-#{id}">
             <h2>
-                <a href="#">${title}</a>
+                <a href="/details/${id}">${title}</a>
             </h2>
             <p>
                 <h4><span class="label label-success">作者：${author}</span>
@@ -28,7 +28,7 @@ Blog
             </p>
             <p>
             ${content}
-            <a class="btn" href="#">View details »</a>
+            <a class="btn" href="/details/${id}">View details »</a>
             </p>
         </div>
             `;

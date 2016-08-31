@@ -3,7 +3,7 @@
 <head>
     {% block head %}
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}掏乎{% endblock %}</title>
 
     <script src="../static/js/api.js"></script>
     <script src="../static/js/bootstrap.jquery.min.js"></script>
@@ -75,9 +75,9 @@
                 </div>
             </nav>
 
+            {% block body %}
             <div class="row clearfix">
                 <!--正文-->
-
                 <div class="col-md-8 column" id="sortable">
                 {% if user %}
                     {% block content %}
@@ -87,6 +87,7 @@
                 </div>
 
                 <!--侧栏-->
+                {% block sidebar %}
                 <div class="col-md-4 column">
                     <div class="container-fluid">
                         <div class="media-left">
@@ -161,7 +162,9 @@
                     <img class="img-responsive" src="../static/img/flask.jpg"/>
 
                 </div>
+                {% endblock %}
             </div>
+            {% endblock %}
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@
         var tw = `
         <div data-id=${id} class="long-tweet container-fluid" style="margin: 0px 0px 5px 0px;">
             <h2>
-                <a href="#">${title}</a>
+                <a href="/details/${id}">${title}</a>
             </h2>
             <div class="container-fluid" style="margin: -18px 0px 0px -10px;">
                 <div class="media-left">
@@ -34,7 +34,7 @@
             </div>
             <p>
             ${content}
-            <a class="btn" href="#">View details »</a>
+            <a class="btn" href="/details/${id}">View details »</a>
             </p>
         </div>
             `;

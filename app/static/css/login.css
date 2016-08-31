@@ -1,5 +1,9 @@
 body {
+    /*width: 100%;*/
+    /*height: 100%;*/
     background:  url(../img/background.jpg);
+    /*background-size: 100%;*/
+    /*background-position: center;*/
     background-repeat: no-repeat;
 }
 
@@ -23,7 +27,7 @@ a {
 
 .gua-header h1 {
     font-size: 50px;
-    color: dodgerblue;
+    color: linen;
 }
 
 .gua-header h2 {
@@ -42,8 +46,8 @@ a {
     height: 3px;
     width: 45px;
     position: relative;
-    left: 100px;;
-    background-color: dodgerblue;
+    left: 100px;
+    background-color: white;
 }
 
 .gua-form-textinput {
@@ -67,6 +71,7 @@ a {
     margin: 5px;
     border: none;
     outline: none;
+    color: #0f0f0f;
 }
 
 .gua-button-big {

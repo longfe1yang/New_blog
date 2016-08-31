@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+<div data-id={{tweet.id}} class="long-tweet container-fluid" style="margin: 0px 0px 5px 0px;">
+            <h2>
+                <a href="#">{{tweet.title}}</a>
+            </h2>
+            <div class="container-fluid" style="margin: -18px 0px 0px -10px;">
+                <div class="media-left">
+                    <h4><span class="label label-success">作者：{{author}}</span>
+                        <span class="label label-primary">时间：{{tweet.update_time}}</span></h4>
+                </div>
+                {% if user.username == author %}
+                <div class="media-right" >
+                    <a class="glyphicon glyphicon-pencil btn-sm" href="/update/{{tweet.id}}" title="编辑"></a>
+                    <a class="glyphicon glyphicon-trash" type="button" href="#" title="删除"></a>
+                </div>
+                {% endif %}
+            </div>
+            <p>
+            {{tweet.content|safe}}
+            </p>
+        </div>
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

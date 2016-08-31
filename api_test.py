@@ -1,3 +1,4 @@
+import json
 import requests
 from my_log import log
 import random
@@ -40,18 +41,18 @@ def user_login(form):
     return post(path, form)
 
 if __name__ == '__main__':
+    path = host + '/details/1'
     # form = {
-    #     'username': '123',
-    #     'password': '123'
+    #     'title': '我就试试',
+    #
     # }
-    # response = user_login(form)
-    # log(response.status_code, response.text)
-    path = host + '/api/tweet/update/1'
-    form = {
-        'title': '我就试试',
+    # response = requests.post(path, form)
+    # response.encoding = 'utf-8'
+    # print(response.status_code, response.text)
+    r = requests.get(path)
+    print(r.status_code)
+    # r.encoding = 'utf-8'
 
-    }
-    response = requests.post(path, form)
-    response.encoding = 'utf-8'
-    print(response.status_code, response.text)
+
+
 
