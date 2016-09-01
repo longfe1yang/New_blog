@@ -98,16 +98,16 @@
 
 
 {% block body %}
-<div class="container-fluid" style="margin: 0px 0px 5px 0px;">
+<div class="container-fluid" >
             <h2>
                 <a href="#">{{tweet.title}}</a>
             </h2>
             <div class="container-fluid" style="margin: -18px 0px 0px -10px;">
                 <div class="media-left">
                     <h4><span class="label label-success">作者：{{author.username}}</span>
-                        <span class="label label-primary">时间：{{tweet.update_time}}</span></h4>
+                        <span class="label label-primary">发布时间： {{tweet.created_time | format_time}}</span></h4>
                 </div>
-                {% if user.username == author %}
+                {% if user.username == author.username %}
                 <div class="media-right" >
                     <a class="glyphicon glyphicon-pencil btn-sm" href="/update/{{tweet.id}}" title="编辑"></a>
                     <a class="glyphicon glyphicon-trash" type="button" href="#" title="删除"></a>
@@ -117,6 +117,7 @@
             <p>
             {{tweet.content|safe}}
             </p>
+            <p class="align-right"><h4><strong>最后编辑时间：{{tweet.update_time | format_time}}</strong></h4></p>
 
 
             <hr>
@@ -144,7 +145,7 @@
 
                     <div class="text-right">
                         发布于 --
-                        {{c.created_time}}
+                        {{c.created_time | format_time}}
 
                     </div>
                 </div>

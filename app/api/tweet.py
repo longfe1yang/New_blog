@@ -55,7 +55,7 @@ def tweet_update(tweet_id):
         # data=t.json(),
     )
     # r['next'] = request.args.get('next', url_for('controllers.host_view', user=u))
-    r['next'] = '/host'
+    r['next'] = '/details/{}'.format(tweet_id)
     log('r', r)
     return jsonify(r)
 

@@ -30,10 +30,13 @@ def init_app():
     from .controllers import main as controllers
     from .api import main as api
 
+    from .controllers import format_time
+
     # 注册蓝图
     app.register_blueprint(auth)
     app.register_blueprint(controllers)
     app.register_blueprint(api, url_prefix='/api')
-
+    # 这里是加了jinjia过滤器
+    app.add_template_filter(format_time, 'format_time')
     # 把 app 引用返回
     return app

@@ -9,6 +9,8 @@ from ..models import Comment
 
 from my_log import log
 
+import time
+
 main = Blueprint('controllers', __name__)
 
 
@@ -25,6 +27,13 @@ def other_users():
     u = current_user()
     all_users = User.query.all()
     return [i for i in all_users if i != u]
+
+
+def format_time(time_stamp):
+    time_format = '%Y-%m-%d %H:%M'
+    t = time.localtime(time_stamp)
+    tt = time.strftime(time_format, t)
+    return tt
 
 
 @main.route('/timeline')
@@ -64,8 +73,10 @@ def tweet_details(tweet_id):
         author=author,
         comments=comments,
     )
-    # log('comments', type(comments), comments[0]['id'])
+    log('details update', t.update_time)
+
     return render_template('tweet_details.html', **d)
+
 
 # @main.route('/timeline/<username>')
 # def user_timeline_view(username):
