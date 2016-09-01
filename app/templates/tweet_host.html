@@ -14,7 +14,7 @@
         var t = tweet;
         var content = t.content;
         var title = t.title;
-        var time = t.created_time;
+        var time = dateTrans(t.created_time);
         var author = t.author;
         var id = t.id;
         var tw = `

@@ -13,7 +13,8 @@ Blog
         var t = tweet;
         var content = t.content;
         var title = t.title;
-        var time = t.created_time;
+        var time = dateTrans(t.created_time);
+        log('这里是time', t.created_time);
 //        todo 这里应该换为是username，可以在return的JSON中加入
         var author = t.author;
         var id = t.id;
