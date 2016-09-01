@@ -42,7 +42,6 @@ def register():
     print('register')
     form = request.get_json()
     u = User(form)
-    print('register 2')
     r = {
         'success': True
     }
@@ -51,7 +50,6 @@ def register():
         print("register success", form)
         # 保存到数据库
         u.save()
-        r['success'] = True
         r['next'] = request.args.get('next', url_for('controllers.timeline_view'))
         r['message'] = msgs
         session.permanent = True

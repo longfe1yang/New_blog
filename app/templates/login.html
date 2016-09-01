@@ -44,8 +44,8 @@
                 'password',
             ];
             var loginPrefix = 'id-input-login-';
-            var form = formFromKeys(keys, loginPrefix);
-            return form;
+            return formFromKeys(keys, loginPrefix);
+//            return form;
         };
 
         var registerForm = function () {
@@ -56,8 +56,8 @@
                 'sex',
             ];
             var registerPrefix = 'id-input-';
-            var form = formFromKeys(keys, registerPrefix);
-            return form;
+            return formFromKeys(keys, registerPrefix);
+//            return form;
         };
 
         // actions
@@ -71,6 +71,7 @@
                     window.location.href = r.next;
                 } else {
                     alert(r.message);
+                    window.location.href = '/login'
                 }
             };
             var error = function (err) {
@@ -88,6 +89,7 @@
                     window.location.href = r.next;
                 } else {
                     alert(r.message);
+                    window.location.href = '/login'
                 }
             };
             var error = function (err) {

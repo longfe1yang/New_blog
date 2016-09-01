@@ -41,16 +41,19 @@ def user_login(form):
     return post(path, form)
 
 if __name__ == '__main__':
-    path = host + '/details/1'
-    # form = {
-    #     'title': '我就试试',
-    #
-    # }
+    path = host + '/api/comment/add/1'
+    form = {
+        'content': '我就试试',
+        'tweet_id': 1
+    }
+
+    r = requests.post(path, form)
+    print(r.status_code)
     # response = requests.post(path, form)
     # response.encoding = 'utf-8'
     # print(response.status_code, response.text)
-    r = requests.get(path)
-    print(r.status_code)
+    # r = requests.get(path)
+    # print(r.status_code)
     # r.encoding = 'utf-8'
 
 

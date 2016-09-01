@@ -5,6 +5,7 @@ from flask import jsonify
 
 from ..models import User
 from ..models import Tweet
+from ..models import Comment
 
 from my_log import log
 
@@ -56,11 +57,14 @@ def tweet_details(tweet_id):
     u = current_user()
     t = Tweet.query.filter_by(id=tweet_id).first()
     author = User.query.filter_by(id=t.user_id).first()
+    comments = Comment.query.filter_by(tweet_id=tweet_id).all()
     d = dict(
         user=u,
         tweet=t,
-        author=author.username
+        author=author,
+        comments=comments,
     )
+    # log('comments', type(comments), comments[0]['id'])
     return render_template('tweet_details.html', **d)
 
 # @main.route('/timeline/<username>')

@@ -19,10 +19,10 @@ var formFromKeys = function(keys, prefix) {
         var key = keys[i];
         var tagid = prefix + key;
         var value = $('#' + tagid).val();
-        if (value.length < 1) {
+        // if (value.length < 1) {
             // alert('字段不能为空');
-            break;
-        }
+            // break;
+        // }
         form[key] = value;
     }
     return form;
@@ -112,4 +112,11 @@ vip.tweetMyOwn = function (success, user_id) {
 vip.tweetUpdate = function (form, success, error, tweet_id) {
     var url = '/api/tweet/update/' + tweet_id;
     this.post(url, form, success, error)
+};
+
+
+// comment添加
+vip.commentAdd = function (form, success, error, tweet_id) {
+   var url = '/api/comment/add/' + tweet_id;
+   this.post(url, form, success, error)
 };

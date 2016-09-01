@@ -12,7 +12,7 @@ class Tweet(db.Model, ReprMixin):
     created_time = db.Column(db.Integer, default=0)
     update_time = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comments = db.relationship('Comment', backref='blog')
+    comments = db.relationship('Comment', backref='tweet')
 
     def __init__(self, form):
         print('tweet init', form)
@@ -38,7 +38,7 @@ class Tweet(db.Model, ReprMixin):
     def update(self, form):
         self.content = form['content']
         self.title = form['title']
-        # self.created_time = int(time.time())
+        self.update_time = int(time.time())
         db.session.commit()
 
     def save(self):
