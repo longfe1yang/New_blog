@@ -62,8 +62,16 @@
         )
     };
 
+    var bindDeleteComment = function () {
+        $('#id-comment-aera').on('click', 'span.glyphicon.glyphicon-remove', function () {
+            $(this).parent().remove();
+            alert('评论已删除')
+        })
+    };
+
     var __main = function () {
         bindInsertComment();
+        bindDeleteComment();
     };
 
     $(document).ready(function () {
@@ -105,6 +113,9 @@
             {% for c in comments %}
 
                 <div class="text-primary">
+                    {% if user.username == author.username %}
+                    <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
                     <div class="media-left">
                         <a href="#">
                         <img src="../static/img/匿名者.jpg" class="img-rounded" height="70" width="70">
@@ -115,12 +126,16 @@
                     </div>
                     <div class="media-right">
                         {{c.content|safe}}
+
                     </div>
+
                     <div class="text-right">
                         发布于 --
-                        {{c.created_time}}</div>
-                    {% endfor %}
+                        {{c.created_time}}
+
+                    </div>
                 </div>
+            {% endfor %}
             </div>
 
 
