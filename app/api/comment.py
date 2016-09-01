@@ -33,3 +33,19 @@ def comment_add(tweet_id):
     print('r', r)
     # print('json', jsonify(r))
     return jsonify(r)
+
+
+@main.route('/comment/delete/<comment_id>')
+def comment_delete(comment_id):
+    c = Comment.query.filter_by(id=comment_id).first()
+    log('comment.id', c)
+    if c is None:
+        print('这里有个404')
+        abort(404)
+    c.delete()
+    r = {
+        'success': True,
+        'message': '成功删除',
+    }
+    log('这个是r', r)
+    return jsonify(r)

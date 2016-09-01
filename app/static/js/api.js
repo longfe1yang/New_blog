@@ -120,3 +120,9 @@ vip.commentAdd = function (form, success, error, tweet_id) {
    var url = '/api/comment/add/' + tweet_id;
    this.post(url, form, success, error)
 };
+
+// comment删除
+vip.commentDelete = function(success, comment_id){
+    var url = '/api/comment/delete/' + comment_id;
+    this.get(url, success)
+};

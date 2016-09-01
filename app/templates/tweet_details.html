@@ -64,8 +64,21 @@
 
     var bindDeleteComment = function () {
         $('#id-comment-aera').on('click', 'span.glyphicon.glyphicon-remove', function () {
-            $(this).parent().remove();
-            alert('评论已删除')
+            var self = $(this);
+            log('self', self);
+            var commentId = self.closest('div.text-primary').data('id');
+            log('commentId', commentId);
+            var success = function(r){
+                if(r.success) {
+                    alert(r.message);
+                    self.parent().remove();
+                } else {
+                    log(r.message);
+                }
+              };
+            log('comment删除前的mark');
+            vip.commentDelete(success, commentId);
+//            $(this).parent().remove();
         })
     };
 
@@ -112,7 +125,7 @@
         <div id="id-comment-aera" class="container long-comment-aera">
             {% for c in comments %}
 
-                <div class="text-primary">
+                <div data-id="{{c.id}}" class="text-primary">
                     {% if user.username == author.username %}
                     <span class="glyphicon glyphicon-remove"></span>
                     {% endif %}
