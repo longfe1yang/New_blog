@@ -126,3 +126,9 @@ vip.commentDelete = function(success, comment_id){
     var url = '/api/comment/delete/' + comment_id;
     this.get(url, success)
 };
+
+// user删除
+vip.userDelete = function (success, userId) {
+    var url = '/api/user/delete/' + userId;
+    this.get(url, success)
+};

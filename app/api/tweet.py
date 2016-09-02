@@ -48,7 +48,7 @@ def tweet_update(tweet_id):
     # u = current_user()
     t = Tweet.query.filter_by(id=tweet_id).first_or_404()
     form = request.get_json()
-    log(form)
+    # log(form)
     t.update(form)
     r = dict(
         success=True,
@@ -56,7 +56,7 @@ def tweet_update(tweet_id):
     )
     # r['next'] = request.args.get('next', url_for('controllers.host_view', user=u))
     r['next'] = '/details/{}'.format(tweet_id)
-    log('r', r)
+    # log('r', r)
     return jsonify(r)
 
 
@@ -94,7 +94,7 @@ def tweet_deliver():
         success=True,
         data=data,
     )
-    log('debug r', r)
+    # log('debug r', r)
     return jsonify(r)
 
 
@@ -103,8 +103,8 @@ def tweet_deliver():
 # @login_required
 def load_user_tweet(user_id):
     tweets = Tweet.query.filter_by(user_id=user_id).all()
-    log('user_id', user_id)
-    log('tweets', tweets)
+    # log('user_id', user_id)
+    # log('tweets', tweets)
     data = [t.json() for t in tweets]
     content_cutter(data)
     insert_author(data)
@@ -112,7 +112,7 @@ def load_user_tweet(user_id):
         success=True,
         data=data,
     )
-    print('debug r', r)
+    # print('debug r', r)
     return jsonify(r)
 
 

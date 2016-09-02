@@ -57,7 +57,7 @@
         }, g_userID);
     };
 
-    var bindDeleteAction = function () {
+    var deleteTweet = function () {
         $('div#sortable').on('click', 'a.glyphicon.glyphicon-trash', function () {
             var self = $(this);
             var tweet_id = self.closest('div.long-tweet').data('id');
@@ -77,9 +77,29 @@
         })
     };
 
+    var deleteUser = function () {
+        $('div.panel-body.long-user-panel').on('click', 'span.long-user-delete', function () {
+            var self = $(this);
+            var userId = self.parent().data('id');
+            log('userId', userId);
+            var success = function(r){
+                if(r.success) {
+                    alert(r.message);
+                    self.parent().remove();
+                } else {
+                    log(r.message);
+                }
+              };
+            log('tweet删除前的mark');
+            vip.userDelete(success, userId);
+        })
+    };
+
     var __main = function () {
         loadTweets();
-        bindDeleteAction();
+        deleteTweet();
+        deleteUser()
+
     };
 
     $(document).ready(function () {

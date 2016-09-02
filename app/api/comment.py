@@ -1,5 +1,3 @@
-from ..models import User
-from ..models import Tweet
 from ..models import Comment
 from . import main
 from . import current_user
@@ -8,7 +6,7 @@ from my_log import log
 from flask import request
 from flask import jsonify
 from flask import abort
-from flask import url_for
+
 
 # 绝对路由是/api/comment/
 

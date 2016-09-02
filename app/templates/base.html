@@ -114,14 +114,18 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">其他用户</h3>
                         </div>
-                        <div class="panel-body">
-
+                        <div class="panel-body long-user-panel">
                             {% block other_users %}
                                 {% if others %}
                                     {% for u in others %}
-                                        <a href="#">{{u.username}}</a>
-                                        <br>
-                                    {% endfor %}
+                                        <div data-id={{u.id}} class="long-user-module">
+                                        {% if user.role == 1 %}
+                                        <span class="glyphicon glyphicon-remove long-user-delete" title="删除用户"></span>
+                                        {% endif  %}
+                                        <a href="#">{{u.username}}<br></a>
+                                         </div>
+                                        {% endfor %}
+
                                 {% endif %}
                             {% endblock %}
 
