@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更换头像</title>
+    <script src="../static/js/jquery-3.0.0.min.js"></script>
+    <script>
+    var upload = function(file) {
+        // 要用一个 formdata 对象来装 file，new是新建的意思
+        var fd = new FormData();
+        fd.append('uploaded', file);
+
+        $.ajax({
+            url: '/api/upload',
+            method: 'post',
+            // 下面这两个选项一定要加上
+            contentType: false,
+            processData: false,
+            data: fd,
+            success: function() {
+                console.log('上传成功', file.name);
+            },
+            error: function() {
+                console.log('上传失败', file.name);
+            }
+        });
+    };
+
+    $(document).ready(function() {
+        $('#id-button-upload').on('click', function() {
+            var fileTag =$('#id-input-file')[0];
+            var files = fileTag.files;
+            var numberOfFiles = files.length;
+            if(numberOfFiles == 0) {
+                alert('还没有选中文件');
+            } else {
+                for (var i = 0; i < numberOfFiles; i++) {
+                    var file = files[i];
+                    console.log('上传的文件: ', file.name);
+                    upload(file);
+                }
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+<div class="file-wrapper">
+        <!-- 指定 multiple 可以上传多个文件 -->
+        <input id="id-input-file" type="file">
+        <button id="id-button-upload">上传头像</button>
+</div>
+
+</body>
+</html>

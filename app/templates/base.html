@@ -3,7 +3,7 @@
 <head>
     {% block head %}
     <meta charset="UTF-8">
-    <title>{% block title %}掏乎{% endblock %}</title>
+    <title>{% block title %}Blog{% endblock %}</title>
 
     <script src="../static/js/api.js"></script>
     <script src="../static/js/bootstrap.jquery.min.js"></script>
@@ -20,6 +20,7 @@
 
     {% endblock%}
 </head>
+
 <body>
 
 <div class="container">
@@ -41,8 +42,6 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <!--<div class="glyphicon glyphicon-home"></div>-->
-                            <!--增加路由-->
                             <a class="glyphicon glyphicon-user" href="/host">My blog</a>
                         </li>
                         <li>
@@ -66,6 +65,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<strong
                                     class="caret"></strong></a>
                             <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/api/">更换头像</a>
+                                </li>
                                 <li>
                                     <a href="/logout">Logout</a>
                                 </li>
@@ -92,16 +94,18 @@
                     <div class="container-fluid">
                         <div class="media-left">
                             {% block person_photo %}
-                            <!--<img src="../static/img/head.png" class="img-circle glyphicon-align-right" width="120"-->
-                                 <!--height="120"/>-->
+                            <a class="long-img-head" href="/api/">
+                            <img src="../static/img/head.png" class="img-circle glyphicon-align-right" width="120"
+                                 height="120"/>
+                            </a>
                             {% endblock %}
                         </div>
                         <div class="media-right">
                             {% block personal %}
-                            <!--<br>-->
-                            <!--<p>欢迎您，{{user.username}}</p>-->
-                            <!--<p>note：{{user.note}}</p>-->
-                            <!--<p>性别：{{user.sex}}</p>-->
+                            <br>
+                            <p>欢迎您，{{user.username}}</p>
+                            <p>note：{{user.note}}</p>
+                            <p>性别：{{user.sex}}</p>
                             {% endblock %}
                         </div>
                     </div>

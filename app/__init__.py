@@ -36,7 +36,10 @@ def init_app():
     app.register_blueprint(auth)
     app.register_blueprint(controllers)
     app.register_blueprint(api, url_prefix='/api')
-    # 这里是加了jinjia过滤器
+    
+    # 这里设置了上传头像的大小
+    app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
+    # 这里是加了jinja2过滤器
     app.add_template_filter(format_time, 'format_time')
     # 把 app 引用返回
     return app

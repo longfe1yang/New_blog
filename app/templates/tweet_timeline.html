@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Blog
-{% endblock %}
-
 {% block head %}
 {{ super() }}
 <script src="../static/js/api.js"></script>
@@ -63,16 +59,4 @@ Blog
         __main();
     })
 </script>
-{% endblock %}
-
-{% block person_photo %}
-<img src="../static/img/head.png" class="img-circle glyphicon-align-right" width="120"
-height="120"/>
-{% endblock %}
-
-{% block personal %}
-<br>
-<p>欢迎您，{{user.username}}</p>
-<p>note：{{user.note}}</p>
-<p>性别：{{user.sex}}</p>
 {% endblock %}
