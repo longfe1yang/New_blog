@@ -8,6 +8,7 @@ from flask import Blueprint
 
 from ..models import User
 
+from my_log import log
 
 # blue 用来给 app 导入, 在本文件中添加路由函数
 # auth 是 name, 用来给 url_for 提供路由函数
@@ -24,9 +25,9 @@ def current_user():
 
 @blue.route('/')
 def index():
-    view = 'auth.login_view'
+    # view = 'auth.login_view'
     # 由于是在相同蓝图下, 所以也可以这样写, 省略前缀
-    # view = '.login_view'
+    view = '.login_view'
     return redirect(url_for(view))
 
 
@@ -76,6 +77,7 @@ def login():
     if user is not None and user.validate_auth(form):
         r['success'] = True
         r['next'] = request.args.get('next', url_for('controllers.timeline_view'))
+        log('这里是r[next]', r['next'])
         session.permanent = True
         session['username'] = username
     else:
